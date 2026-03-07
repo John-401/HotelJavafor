@@ -1,63 +1,56 @@
-package application.domain;
+package aplication.domain;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class BedRoom {
 
-
     Scanner sc = new Scanner(System.in);
 
+    public int id;
+    public int idService;
+    public String name;
+    public boolean status;
+    public double price;
 
-    private int roomId;
-    private String room;
-    private String roomType;
-    private double price;
-    private boolean state;
-
-
-    // Constructors
+    //constructor
 
     public BedRoom(){
 
     }
 
-    public BedRoom(int roomId, String room, String roomType, double price, boolean state) {
-        this.roomId = roomId;
-        this.room = room;
-        this.roomType = roomType;
+    public BedRoom(int id, int idService, String name, Boolean status, double price){
+        this.id = id;
+        this.idService = idService;
+        this.name = name;
         this.price = price;
-        this.state = state;
+        this.status = status;
     }
 
-    public BedRoom(String room) {
-        this.room = room;
+    // getter and setters
+
+    public int getIdService() {
+        return idService;
     }
 
-    // Getter and Setters
-
-
-    public int getRoomId() {
-        return roomId;
+    public void setIdService(int idService) {
+        this.idService = idService;
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
+    public String getName() {
+        return name;
     }
 
-    public String getRoom() {
-        return room;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setRoom(String room) {
-        this.room = room;
+    public boolean isStatus() {
+        return status;
     }
 
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public double getPrice() {
@@ -68,61 +61,50 @@ public class BedRoom {
         this.price = price;
     }
 
-    public boolean isState() {
-        return state;
-    }
 
-    public void setState(boolean state) {
-        this.state = state;
-    }
+    // inyección de independencia
 
-    // Methods
+    public BedRoom createBedRoom( BedRoom bedRoom){
 
-    public BedRoom createBedRoom(BedRoom bedRoom){
-
-
-        System.out.println("Ingrese el id de la habitación");
+        System.out.println("Digite el id de la habitación: ");
         int id = sc.nextInt();
-        bedRoom.roomId = id;
+        bedRoom.id = id;
         sc.nextLine();
 
-        System.out.println("Ingrese el numero de la Habitacion");
-        String room = sc.nextLine();
-        bedRoom.room = room;
+        System.out.println("Digite el estado (true/false): ");
+        bedRoom.status = sc.nextBoolean();
 
-        System.out.println("Seleccione el tipo de la habitación");
-        String roomType = sc.nextLine();
-        bedRoom.roomType = roomType;
-
-        System.out.println("Ingrese el precio por persona ");
-        double price = sc.nextDouble();
-        bedRoom.price = price;
+        System.out.println("Digite el precio: ");
+        bedRoom.price = sc.nextDouble();
         sc.nextLine();
-
-        System.out.println("Seleccione el estado de la habitación");
-        boolean state = sc.nextBoolean();
-        bedRoom.state = state;
-
-
 
         return bedRoom;
     }
 
-    public void getBedRoomById(int id , BedRoom bedRoom){
+    public BedRoom updateBedRoom(BedRoom bedroom){
+        return bedroom;
+    }
+    public BedRoom getBedRoomById(int id, BedRoom bedRoom){
 
-
-        if(this.roomId == id){
-            System.out.println("Id:" + bedRoom.roomId + "\n" +
-                    "Num Hab: " + bedRoom.room + "\n" +
-                    "Tipo hab: " + bedRoom.roomType + "\n" +
-                    "Precio" + bedRoom.price + "\n" +
-                    "Estado:"  + bedRoom.state + "\n");
-
-
-        }else{
-            System.out.println("Valide el id de la habitacion que esta consultando");
+        if(this.id == id){
+            System.out.println("ID: " + bedRoom.id + "\n" +
+                    "tipo de servicio: " + bedRoom.idService + "\n" +
+                    "nombre habitación: " + bedRoom.name + "\n" +
+                    "Status: " + bedRoom.status + "\n" +
+                    "Precio: " + bedRoom.price);
+        } else {
+            System.out.println("Valide el Id de la habitación que esta consultando" );
         }
 
+        return null;
+    }
+
+    public BedRoom getAllBedRoom(){
+        return null;
+    }
+
+    public BedRoom deleteBedRoom(BedRoom bedroom){
+        return bedroom;
     }
 
 
